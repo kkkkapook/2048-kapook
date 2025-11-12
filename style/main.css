@@ -498,37 +498,39 @@ hr {
     font-size: 15px; }
 
   body {
-    margin: 20px 0;
-    padding: 0 20px; }
+    /* 모바일 화면에서 꽉 채우기 위해 margin과 padding 제거 */
+    margin: 0;
+    padding: 0; }
 
   h1.title {
     font-size: 27px;
     margin-top: 15px; }
 
   .container {
-    width: 280px;
-    margin: 0 auto; }
+    /* 화면 폭을 꽉 채움 */
+    width: 100vw; 
+    /* max-width 제거 또는 100% 설정 */
+    max-width: 100vw; 
+    margin: 0 auto;
+    /* 상단 점수판이 너무 붙지 않게 padding-top 추가 */
+    padding-top: 10px;
+  }
 
-  .score-container, .best-container {
-    margin-top: 0;
-    padding: 15px 10px;
-    min-width: 40px; }
-
-  .heading {
-    margin-bottom: 10px; }
+  /* .scores-container는 그대로 둠. 필요하면 수정 */
 
   .game-container {
-    margin-top: 40px;
+    margin-top: 10px; /* 점수판과의 간격 줄임 */
     position: relative;
-    padding: 10px;
+    padding: 10px; /* 게임 보드 내부 여백 유지 */
     cursor: default;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     background: #003d67;
     border-radius: 6px;
-    width: 280px;
-    height: 280px;
+    /* width와 height를 100vw로 설정하여 화면 폭을 꽉 채움 */
+    width: calc(100vw - 20px); /* 100vw - (left padding + right padding) */
+    height: calc(100vw - 20px); /* 정사각형 유지를 위해 width와 동일하게 설정 */
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box; }
@@ -550,14 +552,17 @@ hr {
       animation-fill-mode: both; 
         }
       .game-container .game-message p {
-        font-size: 60px;
+        /* 크기에 맞춰 조정 */
+        font-size: 10vw; 
         font-weight: bold;
-        height: 60px;
-        line-height: 60px;
-        margin-top: 222px; }
+        height: 10vw;
+        line-height: 10vw;
+        margin-top: 30vw; /* 화면 크기에 맞춰 조정 */
+      }
       .game-container .game-message .lower {
         display: block;
-        margin-top: 59px; }
+        margin-top: 8vw; /* 화면 크기에 맞춰 조정 */
+      }
       .game-container .game-message a {
         display: inline-block;
         background: #8f7a66;
@@ -583,7 +588,8 @@ hr {
     z-index: 1; }
 
   .grid-row {
-    margin-bottom: 10px; }
+    margin-bottom: 2.2vw; /* 여백을 뷰포트 단위로 조정 (약 10px / 450px * 100) */
+  }
     .grid-row:last-child {
       margin-bottom: 0; }
     .grid-row:after {
@@ -592,9 +598,10 @@ hr {
       clear: both; }
 
   .grid-cell {
-    width: 57.5px;
-    height: 57.5px;
-    margin-right: 10px;
+    /* (100vw - 20px(컨테이너 패딩) - 3 * 2.2vw(여백)) / 4 */
+    width: calc((100vw - 20px - 6.6vw) / 4);
+    height: calc((100vw - 20px - 6.6vw) / 4);
+    margin-right: 2.2vw; /* 여백을 뷰포트 단위로 조정 */
     float: left;
     border-radius: 3px;
     background: rgba(238, 228, 218, 0.35); }
@@ -604,78 +611,93 @@ hr {
   .tile-container {
     position: absolute;
     z-index: 2; }
-
+  
+  /* 타일 크기 및 내부 스타일 조정 */
   .tile, .tile .tile-inner {
-    width: 58px;
-    height: 58px;
-    line-height: 67.5px; }
+    width: calc((100vw - 20px - 6.6vw) / 4 + 1px); /* grid-cell보다 약간 크게 */
+    height: calc((100vw - 20px - 6.6vw) / 4 + 1px);
+    line-height: calc((100vw - 20px - 6.6vw) / 4 + 10px); /* 가운데 정렬을 위해 조정 */
+  }
+  
+  /* 타일 변환 값 (translate) 계산: (셀 크기 + 여백) */
+  .tile-transform {
+    /* 변환 값: (셀 크기) + (여백) = calc((100vw - 20px - 6.6vw) / 4 + 2.2vw) */
+    --t: calc((100vw - 20px - 6.6vw) / 4 + 2.2vw);
+  }
+  
   .tile.tile-position-1-1 {
     -webkit-transform: translate(0px, 0px);
     -moz-transform: translate(0px, 0px);
     transform: translate(0px, 0px); }
   .tile.tile-position-1-2 {
-    -webkit-transform: translate(0px, 67px);
-    -moz-transform: translate(0px, 67px);
-    transform: translate(0px, 67px); }
+    -webkit-transform: translate(0px, var(--t));
+    -moz-transform: translate(0px, var(--t));
+    transform: translate(0px, var(--t)); }
   .tile.tile-position-1-3 {
-    -webkit-transform: translate(0px, 135px);
-    -moz-transform: translate(0px, 135px);
-    transform: translate(0px, 135px); }
+    -webkit-transform: translate(0px, calc(var(--t) * 2));
+    -moz-transform: translate(0px, calc(var(--t) * 2));
+    transform: translate(0px, calc(var(--t) * 2)); }
   .tile.tile-position-1-4 {
-    -webkit-transform: translate(0px, 202px);
-    -moz-transform: translate(0px, 202px);
-    transform: translate(0px, 202px); }
+    -webkit-transform: translate(0px, calc(var(--t) * 3));
+    -moz-transform: translate(0px, calc(var(--t) * 3));
+    transform: translate(0px, calc(var(--t) * 3)); }
   .tile.tile-position-2-1 {
-    -webkit-transform: translate(67px, 0px);
-    -moz-transform: translate(67px, 0px);
-    transform: translate(67px, 0px); }
+    -webkit-transform: translate(var(--t), 0px);
+    -moz-transform: translate(var(--t), 0px);
+    transform: translate(var(--t), 0px); }
   .tile.tile-position-2-2 {
-    -webkit-transform: translate(67px, 67px);
-    -moz-transform: translate(67px, 67px);
-    transform: translate(67px, 67px); }
+    -webkit-transform: translate(var(--t), var(--t));
+    -moz-transform: translate(var(--t), var(--t));
+    transform: translate(var(--t), var(--t)); }
   .tile.tile-position-2-3 {
-    -webkit-transform: translate(67px, 135px);
-    -moz-transform: translate(67px, 135px);
-    transform: translate(67px, 135px); }
+    -webkit-transform: translate(var(--t), calc(var(--t) * 2));
+    -moz-transform: translate(var(--t), calc(var(--t) * 2));
+    transform: translate(var(--t), calc(var(--t) * 2)); }
   .tile.tile-position-2-4 {
-    -webkit-transform: translate(67px, 202px);
-    -moz-transform: translate(67px, 202px);
-    transform: translate(67px, 202px); }
+    -webkit-transform: translate(var(--t), calc(var(--t) * 3));
+    -moz-transform: translate(var(--t), calc(var(--t) * 3));
+    transform: translate(var(--t), calc(var(--t) * 3)); }
   .tile.tile-position-3-1 {
-    -webkit-transform: translate(135px, 0px);
-    -moz-transform: translate(135px, 0px);
-    transform: translate(135px, 0px); }
+    -webkit-transform: translate(calc(var(--t) * 2), 0px);
+    -moz-transform: translate(calc(var(--t) * 2), 0px);
+    transform: translate(calc(var(--t) * 2), 0px); }
   .tile.tile-position-3-2 {
-    -webkit-transform: translate(135px, 67px);
-    -moz-transform: translate(135px, 67px);
-    transform: translate(135px, 67px); }
+    -webkit-transform: translate(calc(var(--t) * 2), var(--t));
+    -moz-transform: translate(calc(var(--t) * 2), var(--t));
+    transform: translate(calc(var(--t) * 2), var(--t)); }
   .tile.tile-position-3-3 {
-    -webkit-transform: translate(135px, 135px);
-    -moz-transform: translate(135px, 135px);
-    transform: translate(135px, 135px); }
+    -webkit-transform: translate(calc(var(--t) * 2), calc(var(--t) * 2));
+    -moz-transform: translate(calc(var(--t) * 2), calc(var(--t) * 2));
+    transform: translate(calc(var(--t) * 2), calc(var(--t) * 2)); }
   .tile.tile-position-3-4 {
-    -webkit-transform: translate(135px, 202px);
-    -moz-transform: translate(135px, 202px);
-    transform: translate(135px, 202px); }
+    -webkit-transform: translate(calc(var(--t) * 2), calc(var(--t) * 3));
+    -moz-transform: translate(calc(var(--t) * 2), calc(var(--t) * 3));
+    transform: translate(calc(var(--t) * 2), calc(var(--t) * 3)); }
   .tile.tile-position-4-1 {
-    -webkit-transform: translate(202px, 0px);
-    -moz-transform: translate(202px, 0px);
-    transform: translate(202px, 0px); }
+    -webkit-transform: translate(calc(var(--t) * 3), 0px);
+    -moz-transform: translate(calc(var(--t) * 3), 0px);
+    transform: translate(calc(var(--t) * 3), 0px); }
   .tile.tile-position-4-2 {
-    -webkit-transform: translate(202px, 67px);
-    -moz-transform: translate(202px, 67px);
-    transform: translate(202px, 67px); }
+    -webkit-transform: translate(calc(var(--t) * 3), var(--t));
+    -moz-transform: translate(calc(var(--t) * 3), var(--t));
+    transform: translate(calc(var(--t) * 3), var(--t)); }
   .tile.tile-position-4-3 {
-    -webkit-transform: translate(202px, 135px);
-    -moz-transform: translate(202px, 135px);
-    transform: translate(202px, 135px); }
+    -webkit-transform: translate(calc(var(--t) * 3), calc(var(--t) * 2));
+    -moz-transform: translate(calc(var(--t) * 3), calc(var(--t) * 2));
+    transform: translate(calc(var(--t) * 3), calc(var(--t) * 2)); }
   .tile.tile-position-4-4 {
-    -webkit-transform: translate(202px, 202px);
-    -moz-transform: translate(202px, 202px);
-    transform: translate(202px, 202px); }
+    -webkit-transform: translate(calc(var(--t) * 3), calc(var(--t) * 3));
+    -moz-transform: translate(calc(var(--t) * 3), calc(var(--t) * 3));
+    transform: translate(calc(var(--t) * 3), calc(var(--t) * 3)); }
+  
+  /* 폰트 크기를 뷰포트 크기에 맞춰 상대적으로 조정 */
+  .tile .tile-inner {
+    font-size: 8vw; /* 화면 크기에 비례하여 폰트 크기 조정 */
+  }
 
   .game-container {
-    margin-top: 20px; }
+    margin-top: 10px; /* 위쪽 마진 조정 */
+  }
 
   .tile .tile-inner {
     font-size: 35px; }
@@ -686,5 +708,6 @@ hr {
     line-height: 30px !important;
     margin-top: 90px !important; }
   .game-message .lower {
-    margin-top: 30px !important; } }
-
+    margin-top: 30px !important; } 
+    
+  }
