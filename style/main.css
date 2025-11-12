@@ -159,10 +159,8 @@ hr {
   -moz-user-select: none;
   background: #003d67;
   border-radius: 6px;
-  width: 90vw;
-  height: 90vw;
-  max-width: 500px;
-  max-height: 500px;
+  width: 500px;
+  height: 500px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
