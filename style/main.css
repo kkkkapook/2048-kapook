@@ -494,25 +494,16 @@ hr {
   margin-top: 50px; }
 
 @media screen and (max-width: 520px) {
-  /* 1. html, body 높이 100% 설정 */
   html, body {
-    font-size: 15px;
-    height: 100%; /* <-- 반드시 추가 */ 
-  }
+    font-size: 15px; }
 
-  /* 2. body에 flexbox 중앙 정렬 적용 */
   body {
-    margin: 0; /* <-- 20px 0 -> 0 으로 수정 */
-    padding: 0 20px;
-    display: flex; /* <-- 추가 */
-    flex-direction: column; /* <-- 추가 */
-    justify-content: center; /* <-- 추가 */
-  }
+    margin: 20px 0;
+    padding: 0 20px; }
 
   h1.title {
     font-size: 27px;
-    margin-top: 15px;
-  }
+    margin-top: 15px; }
 
   .container {
     width: 280px;
@@ -684,7 +675,7 @@ hr {
     transform: translate(202px, 202px); }
 
   .game-container {
-    margin-top: 0px; }
+    margin-top: 20px; }
 
   .tile .tile-inner {
     font-size: 35px; }
