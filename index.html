@@ -32,12 +32,13 @@ THE SOFTWARE.
 <head>
 <meta charset="utf-8">
 <script type='text/javascript'>var _sf_startpt=(new Date()).getTime()</script>
-  <link href="style/main.css" rel="stylesheet" type="text/css">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <script>var step_so_far = 1;</script>
+<link href="style/main.css" rel="stylesheet" type="text/css">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<script>var step_so_far = 1;</script>
+
 <style>
 .tile-inner { color: transparent !important; }
 .tile.tile-2 .tile-inner { background-image: url('style/images/2.png') !important; }
@@ -61,50 +62,53 @@ THE SOFTWARE.
         <div class="best-container">0</div>
       </div>
     </div>
-    <div class="game-container">
-      <div class="game-message">
-        <p></p>
-        <div class="lower">
-          <a class="retry-button">Try again</a>
-        </div>
-      </div>
 
-      <div class="grid-container">
-        <div class="grid-row">
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
+    <!-- ✅ 추가된 래퍼 -->
+    <div class="game-wrapper">
+      <div class="game-container">
+        <div class="game-message">
+          <p></p>
+          <div class="lower">
+            <a class="retry-button">Try again</a>
+          </div>
         </div>
-        <div class="grid-row">
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-        </div>
-        <div class="grid-row">
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-        </div>
-        <div class="grid-row">
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-          <div class="grid-cell"></div>
-        </div>
-      </div>
 
-      <div class="tile-container">
+        <div class="grid-container">
+          <div class="grid-row">
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+          </div>
+          <div class="grid-row">
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+          </div>
+          <div class="grid-row">
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+          </div>
+          <div class="grid-row">
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+            <div class="grid-cell"></div>
+          </div>
+        </div>
 
+        <div class="tile-container"></div>
       </div>
     </div>
 
     <p class="game-explanation">
-      <strong class="important">How to play:</strong> Use your <strong>arrow keys</strong> to move the pictures.<br>When two identical pictures touch, they merge <strong>merges them into the next one!</strong>
+      <strong class="important">How to play:</strong> Use your <strong>arrow keys</strong> to move the pictures.<br>When two identical pictures touch, they merge <strong>into the next one!</strong>
     </p>
   </div>
+
   <script src="js/animframe_polyfill.js"></script>
   <script src="js/keyboard_input_manager.js"></script>
   <script src="js/html_actuator.js"></script>
@@ -113,5 +117,26 @@ THE SOFTWARE.
   <script src="js/local_score_manager.js"></script>
   <script src="js/game_manager.js"></script>
   <script src="js/application.js"></script>
+
+  <!-- ✅ 추가된 반응형 스케일 스크립트 -->
+  <script>
+  (function(){
+    function rescaleGame() {
+      var wrapper = document.querySelector('.game-wrapper');
+      if (!wrapper) return;
+      var vw = Math.min(window.innerWidth, document.documentElement.clientWidth);
+      var base = 500; // 원본 보드 크기
+      var scale = vw < base ? (vw / base) * 0.95 : 1;
+      wrapper.style.transformOrigin = 'top center';
+      wrapper.style.transform = 'scale(' + scale + ')';
+      // 높이 보정
+      var parent = wrapper.parentElement;
+      if (parent) parent.style.height = (base * scale + 80) + 'px';
+    }
+    window.addEventListener('resize', rescaleGame);
+    window.addEventListener('orientationchange', rescaleGame);
+    document.addEventListener('DOMContentLoaded', rescaleGame);
+  })();
+  </script>
 </body>
 </html>

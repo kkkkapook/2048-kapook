@@ -688,3 +688,17 @@ hr {
   .game-message .lower {
     margin-top: 30px !important; } }
 
+/* === 반응형 스케일용 래퍼 추가 === */
+.game-wrapper {
+  width: 500px;
+  margin: 0 auto;
+  transform-origin: top center;
+  transition: transform 0.2s ease;
+}
+
+/* 모바일 높이 최소 확보 */
+@media (max-width: 520px) {
+  body {
+    overflow-x: hidden;
+  }
+}
