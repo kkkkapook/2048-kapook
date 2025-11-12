@@ -495,15 +495,22 @@ hr {
 
 @media screen and (max-width: 520px) {
   html, body {
-    font-size: 15px; }
+    font-size: 15px;
+    height: 100%; /* <<-- 수정/추가 */ 
+  }
 
   body {
-    margin: 20px 0;
-    padding: 0 20px; }
+    margin: 0; /* <<-- 수정 (20px 0 에서 0 으로) */ 
+    padding: 0 20px;
+    display: flex; /* <<-- 추가 */
+    flex-direction: column; /* <<-- 추가 */
+    justify-content: center; /* <<-- 추가 */
+  }
 
   h1.title {
     font-size: 27px;
-    margin-top: 15px; }
+    margin-top: 15px;
+  }
 
   .container {
     width: 280px;
