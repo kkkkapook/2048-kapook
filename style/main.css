@@ -687,3 +687,22 @@ hr {
     margin-top: 90px !important; }
   .game-message .lower {
     margin-top: 30px !important; } }
+
+/* 반응형 스케일링을 위한 컨테이너 래퍼 (추가된 규칙) */
+.game-wrapper {
+  width: 500px;            /* 기존 게임판 사이즈 유지 (JS가 사용하던 기준) */
+  margin: 0 auto;
+  transform-origin: top center;
+}
+
+/* 모바일에서 화면폭에 맞춰 .game-wrapper 를 축소 */
+@media (max-width: 520px) {
+  .game-wrapper {
+    /* 10px 여유를 줌: 화면 전체 폭에 맞춰 자동 계산(스크립트로 실제 scale 적용) */
+    width: 500px;
+  }
+}
+
+/* 최상위에서 가로 여백 제거(선택) */
+body { min-width: 0; }
+
