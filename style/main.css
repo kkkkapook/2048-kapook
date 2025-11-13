@@ -1,10 +1,17 @@
-html {
+html, body {
   margin: 0;
   padding: 0;
   color: #fff;
   font-family: "Roboto Condensed", "Helvetica Neue", Arial, sans-serif;
-  font-size: 18px; 
+  font-size: 18px;
+  height: 100%;
+}
 
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 #uvt_credits { z-index: 9001; }
 #uvt_box { padding: 30px 0; 
@@ -150,7 +157,7 @@ hr {
     opacity: 1; } }
 
 .game-container {
-  margin-top: 40px;
+  margin-top: 20px;
   position: relative;
   padding: 15px;
   cursor: default;
@@ -498,8 +505,8 @@ hr {
     font-size: 15px; }
 
   body {
-    margin: 20px 0;
-    padding: 0 20px; }
+    margin: 0;
+    padding: 0; }
 
   h1.title {
     font-size: 27px;
@@ -675,7 +682,7 @@ hr {
     transform: translate(202px, 202px); }
 
   .game-container {
-    margin-top: 20px; }
+    margin-top: 10px; }
 
   .tile .tile-inner {
     font-size: 35px; }
