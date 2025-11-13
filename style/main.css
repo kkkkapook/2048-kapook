@@ -495,19 +495,32 @@ hr {
 
 @media screen and (max-width: 520px) {
   html, body {
-    font-size: 15px; }
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
 
   body {
-    margin: 20px 0;
-    padding: 0 20px; }
+    margin: 0;
+    padding: 10px;
+  }
 
   h1.title {
     font-size: 27px;
     margin-top: 15px; }
 
   .container {
-    width: 280px;
-    margin: 0 auto; }
+    width: 90vw;  /* 화면 너비의 90% */
+    max-width: 350px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
   .score-container, .best-container {
     margin-top: 0;
@@ -518,7 +531,11 @@ hr {
     margin-bottom: 10px; }
 
   .game-container {
-    margin-top: 40px;
+    margin-top: 10px;
+    width: 90vw;
+    max-width: 350px;
+    height: 90vw;
+    max-height: 350px;
     position: relative;
     padding: 10px;
     cursor: default;
@@ -527,8 +544,6 @@ hr {
     -moz-user-select: none;
     background: #003d67;
     border-radius: 6px;
-    width: 280px;
-    height: 280px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box; }
