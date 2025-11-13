@@ -243,9 +243,9 @@ hr {
   height: 107px;
   line-height: 116.25px; }
 .tile.tile-position-1-1 {
-  -webkit-transform: translate(0px, 0px);
-  -moz-transform: translate(0px, 0px);
-  transform: translate(0px, 0px); }
+  -webkit-transform: translate(0%, 0%);
+  -moz-transform: translate(0%, 0%);
+  transform: translate(0%, 0%); }
 .tile.tile-position-1-2 {
   -webkit-transform: translate(0px, 121px);
   -moz-transform: translate(0px, 121px);
@@ -625,9 +625,9 @@ hr {
     height: 58px;
     line-height: 67.5px; }
   .tile.tile-position-1-1 {
-    -webkit-transform: translate(0px, 0px);
-    -moz-transform: translate(0px, 0px);
-    transform: translate(0px, 0px); }
+    -webkit-transform: translate(0%, 0%);
+    -moz-transform: translate(0%, 0%);
+    transform: translate(0%, 0%); }
   .tile.tile-position-1-2 {
     -webkit-transform: translate(0px, 67px);
     -moz-transform: translate(0px, 67px);
