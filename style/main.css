@@ -607,8 +607,8 @@ hr {
       clear: both; }
 
   .grid-cell {
-    width: 57.5px;
-    height: 57.5px;
+    width: calc(22.5% - 8px);
+    height: calc(22.5% - 8px);
     margin-right: 10px;
     float: left;
     border-radius: 3px;
