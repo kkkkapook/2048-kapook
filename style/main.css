@@ -161,7 +161,7 @@ hr {
     opacity: 1; } }
 
 .game-container {
-  margin-top: 20px;
+  margin-top: 10px;
   position: relative;
   padding: 15px;
   cursor: default;
@@ -502,9 +502,12 @@ hr {
   margin-bottom: 0; }
 
 .game-explanation {
-  margin-top: 50px;
+  margin-top: 15px;
+  margin-bottom: 0;
   color: #000;
-  display: none; }
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: center; }
 
 @media screen and (max-width: 520px) {
   html, body {
@@ -691,6 +694,12 @@ hr {
 
   .game-container {
     margin-top: 10px; }
+
+  .game-explanation {
+    font-size: 10px;
+    line-height: 1.3;
+    margin-top: 10px;
+    margin-bottom: 0; }
 
   .tile .tile-inner {
     font-size: 35px; }
