@@ -5,9 +5,6 @@ function HTMLActuator() {
   this.messageContainer = document.querySelector(".game-message");
 
   this.score = 0;
-  
-  // 모바일 체크
-  this.isMobile = window.innerWidth <= 520;
 }
 
 HTMLActuator.prototype.actuate = function (grid, metadata) {
@@ -67,29 +64,11 @@ HTMLActuator.prototype.addTile = function (tile) {
   inner.classList.add("tile-inner");
   inner.textContent = "";
 
-  // 모바일에서 직접 스타일 적용
-  if (this.isMobile) {
-    wrapper.style.position = "absolute";
-    wrapper.style.width = "22%";
-    wrapper.style.height = "22%";
-    wrapper.style.transition = "100ms ease-in-out";
-    
-    var coords = this.getTileCoordinates(position);
-    wrapper.style.left = coords.left + "%";
-    wrapper.style.top = coords.top + "%";
-  }
-
   if (tile.previousPosition) {
     // Make sure that the tile gets rendered in the previous position first
     window.requestAnimationFrame(function () {
       classes[2] = self.positionClass({ x: tile.x, y: tile.y });
       self.applyClasses(wrapper, classes); // Update the position
-      
-      if (self.isMobile) {
-        var newCoords = self.getTileCoordinates({ x: tile.x, y: tile.y });
-        wrapper.style.left = newCoords.left + "%";
-        wrapper.style.top = newCoords.top + "%";
-      }
     });
   } else if (tile.mergedFrom) {
     classes.push("tile-merged");
@@ -109,17 +88,6 @@ HTMLActuator.prototype.addTile = function (tile) {
 
   // Put the tile on the board
   this.tileContainer.appendChild(wrapper);
-};
-
-HTMLActuator.prototype.getTileCoordinates = function (position) {
-  var pos = this.normalizePosition(position);
-  var x = pos.x - 1;
-  var y = pos.y - 1;
-  
-  var left = x * 25 + 1;
-  var top = y * 25 + 1;
-  
-  return { left: left, top: top };
 };
 
 HTMLActuator.prototype.applyClasses = function (element, classes) {
