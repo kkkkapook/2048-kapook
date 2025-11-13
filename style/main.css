@@ -75,11 +75,11 @@ text-align: center;
   border-radius: 3px;
   color: white;
   margin-top: 8px;
+  margin-left: 10px;
   text-align: center; }
   .score-container:after, .best-container:after {
     position: absolute;
-    width: 90vw;
-    max-width: 500px;
+    width: 100%;
     top: 10px;
     left: 0;
     text-transform: uppercase;
@@ -130,9 +130,11 @@ hr {
   margin-bottom: 30px; }
 
 .container {
-  width: 90vw;         /* 화면 폭의 90% */
-  max-width: 500px;    /* PC에서는 500px 이상 커지지 않게 */
+  width: 100%;
+  max-width: 500px;
   margin: 0 auto;
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 
 @-webkit-keyframes fade-in {
